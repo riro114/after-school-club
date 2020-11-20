@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>After School Club</title>
+    <script src="https://unpkg.com/vue"></script>
+     <!--importing the js file for the lessons-->
+    <script src='lessons.js'></script>
+</head>
+
+<body>
+    <!--div for app-->
+    <div id="app">
+        <h1 v-text="sitename"></h1>
+        <span>Your Shopping Cart - </span><span v-text=cart></span>
+        <h1></h1>
+        <div id="cartButton"><button v-on:click='checkout'>Checkout</button></div>
+        <h1></h1>
+       
+       
+        <!-- displaying lessons -->
+        <div v-for="array in lessons">
+            <div style="border:solid; height:220px; width:300px;">
+                <div style="float:left;">
+                    <img style="height: 120px; width: 120px; object-fit: contain;" v-bind:src="array.image">
+                </div>
+                <div style="float:left;">
+                    <h2 v-text="array.title"></h2>
+                    <p v-text="array.location"></p>
+                    <p style="display:inline">Price: £</p>
+                    <span v-text="array.price"></span>
+                    <br><br>
+                    <p style="display:inline">Number of spaces: </p>
+                    <span v-text="array.spaces"> </span>
+                    <br><br>
+                    <div>
+                        <button v-bind:id="lessons.indexOf(array)" v-on:click="addToCart($event)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <h1></h1>
+        </div>
+
+    </div>
+
+    <script>
+
+         //Vue Settup
+        let app = new Vue({ 
+            el: '#app',
+            data: {
+                sitename: "After School Club",
+                lessons: lessons,
+                cart: []
+            },
+           
+               
+
+               
+            
+        })
+    </script>
+
+</body>
+
+</html>
